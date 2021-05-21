@@ -1,0 +1,17 @@
+% defines pressure control signal dependent on state
+function P = actuatorControl(t,x,a)
+    
+    Kp = 30;
+    Kd = 5;
+    
+%   x_des = 10;  % just put this as a random point
+    
+    bar = @(psi) 0.0689476 * psi;
+    P = bar(100) * abs(sin(t*pi/2.5)); %periodic pressure; ea. 2sec
+    
+    [F_des, F_s, F_f, F_sp] = actuatorForce(eps, P, vel, a)
+    
+    P = Kp*(F_des - x(1)) + Kd*();
+    
+    %P = bar(45);
+end
